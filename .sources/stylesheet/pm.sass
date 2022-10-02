@@ -12,12 +12,10 @@ html, body
 body
     background-color: $color_base_lite
     border: none
-
-    &.login
-        background-image: url(../pics/bg/bg.png)
-        background-attachment: fixed
-        background-repeat: no-repeat
-        background-position: center
+    background-image: url(../pics/bg/bg.png)
+    background-attachment: fixed
+    background-repeat: no-repeat
+    background-position: center
 
 legend
     text-align: center
@@ -92,7 +90,9 @@ $card_items_image: ("alert-critique": "alert-critical.png","alert-hard": "alert-
 
 .callout
     @extend %glassestyle
-    @include glassbase($color_base)
+    @include  background-opacity($color_base, 0.8)
+    @include  border-opacity($color_base, 0.9)
+    backdrop-filter: blur(0)
 
     & > legend
         background-color: $color_info
@@ -120,7 +120,7 @@ $card_items_image: ("alert-critique": "alert-critical.png","alert-hard": "alert-
         background-color: #fffe!important
         box-shadow: inset 1px 1px 1px #aaa, -1px -1px 1px #ccc
         cursor: pointer
-        border-radius: none
+        border-radius: 0
 
 
 .radiobutton
