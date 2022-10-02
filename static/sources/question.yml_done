@@ -1,0 +1,137 @@
+01-organisation:
+- q: Comment avez-vous connu l’existence de cette formation
+  r:
+    t: choix
+    v:
+      0: Par hasard
+      5: Communication interne
+      10: Par l'organisateur
+  t: Organisation
+- q: Que pensez-vous de la communication avant la formation
+  r:
+    t: avis
+  t: Organisation
+- q: Que pensez vous du délai de démarrage de la formation
+  r:
+    t: avis
+  t: Organisation
+- q: Que pensez-vous de la durée de la formation
+  r:
+    t: avis
+  t: Organisation
+- q: Comment évaluez-vous l'organisation et préparation de la formation
+  r:
+    t: eval
+  t: Organisation
+- q: De manière générale, qu'avez vous pensez de l'organisation
+  r:
+    t: txt
+  t: Votre avis
+02-moyens:
+- q: Comment évaluez-vous l’organisation matérielle de cette formation
+  r:
+    t: avis
+  t: Les moyens
+- q: Que pensez-vous des moyens techniques mis à disposition
+  r:
+    t: avis
+  t: Les moyens
+- q: Comment évaluez vous le cadre de formation
+  r:
+    t: eval
+  t: Les moyens
+- q: Avez vous des remarques/conseil sur les moyens
+  r:
+    t: txt
+  t: Votre avis
+03-pedagogie:
+- q: Que pensez-vous du niveaux d'apprentissage ?
+  r:
+    t: avis
+  t: Pédagogie
+- q: Que pensez-vous Contenu théorique (présentation, explication...) ?
+  r:
+    t: avis
+  t: Pédagogie
+- q: Que pensez-vous du contenu pratique(exercices, mises en situation...))
+  r:
+    t: avis
+  t: Pédagogie
+- q: Comment évaluez-vous l'approche pédagogique du formateur
+  r:
+    t: eval
+  t: Pédagogie
+- q: Que pensez-vous de la capacité d’écoute et disponibilité du formateur
+  r:
+    t: avis
+  t: Pédagogie
+- q: Que pensez-vous de l’animation
+  r:
+    t: avis
+  t: Pédagogie
+- q: Que pensez-vous de la durée de la formation
+  r:
+    t: choix
+    v:
+      0: Trop longue
+      5: trop courte
+      10: correct
+  t: Pédagogie
+- q: Comment évaluez vous le rythme de progression
+  r:
+    t: eval
+  t: Pédagogie
+- q: Que pensez-vous de la qualité des documents pédagogiques
+  r:
+    t: avis
+  t: Pédagogie
+- q: De manière générale, qu'avez vous penser de la pédagogie
+  r:
+    t: txt
+  t: Votre avis
+04-generale:
+- q: La formation est-elle en adéquation avec vos attentes
+  r:
+    t: choix
+    v:
+      0: Absolument pas
+      5: En partie
+      10: Totalement
+  t: Générale
+- q: Comment évaluez-vous l'adequation de la formation vis à vis de vos besoins
+  r:
+    t: eval
+  t: Générale
+- q: Comment évaluez vous l'efficacité/l'utilité de la formation
+  r:
+    t: eval
+  t: Générale
+- q: Comment évaluez-vous l'attention et participation générale
+  r:
+    t: eval
+  t: Générale
+- q: Comment évaluez-vous l'ambiance générale
+  r:
+    t: eval
+  t: Générale
+- q: Les compétences et connaissances ensignée vous semblent-elles
+  r:
+    t: choix
+    v:
+      0: non acquises
+      5: A voir au quotidien
+      10: acquis
+  t: Générale
+- q: A la suite de cette formation auriez-vous besoin d'une autre formation
+  r:
+    t: choix
+    v:
+      0: oui
+      3: un peu plus adaptée
+      7: un peu plus approfondie
+      10: non
+  t: Générale
+- q: De manière générale qu'ave-vous pensez de la formation
+  r:
+    t: txt
+  t: Votre avis

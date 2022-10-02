@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block maincontent %}
+<form method="post">
+    <fieldset class="callout text-center" style="width:400px">
+        <legend class="badge"><img src="{{url_for('static', filename='pics/logo/logo_64.png')}}" alt="logo"></legend>
+
+        <div class="margin-vertical-1 grid-y grid-margin-y">
+            <div class="cell margin-bottom-2 small-12">
+                <input type="password" name="superpass" placeholder="mot de passe" class="text-center"/></div>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+            <!--div class="cell">{ { captcha_html(captcha) | safe } }<br/>
+            <small><em>[F5] por rafraichir le captcha</em></small></div-->
+        </div>
+
+        <button type="submit" class="button">Synthese</button>
+    </fieldset>
+</form>
+{% endblock %}

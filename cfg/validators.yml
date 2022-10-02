@@ -1,0 +1,48 @@
+check_mail:
+  required: false
+  schema: email scheme
+form_example:
+  categorie:
+    coerce: clean_string
+    required: true
+    type: string
+  commune:
+    coerce: clean_string
+    required: true
+    type: string
+  email:
+    check_with: email
+  info:
+    coerce: clean_string
+    required: true
+    type: string
+  link:
+    check_with: url
+    required: false
+  phone:
+    required: false
+    schema: gf phone
+  title:
+    coerce: clean_string
+    required: true
+    type: string
+link:
+  check_with: url
+  required: false
+media_link:
+  check_with: medialink
+  coerce: medialink
+  required: false
+txt_optional:
+  coerce: clean_string
+  required: false
+  type: string
+txt_required:
+  coerce: clean_string
+  required: true
+  type: string
+valid_mail:
+  check_with: email
+  required: true
+valid_pwd:
+  schema: sch_password

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>{{title | capitalize}}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/foundation-prototype.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/foundation-float.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/foundation-rtl.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/foundation.min.css')}}" />
+    {% block css %}{% endblock %}
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/pm.min.css')}}" />
+</head>
+<body  class="grid-container height-100">
+    <div class="grid-x align-center-middle height-100">
+        <div class="grid-y">
+            <div class="cell">
+            {% block maincontent %}{% endblock %}
+            </div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div id="flash_message" class="cell  text-center padding-1 bg-glass-info">{{messages[0] |safe}}</div>
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+
+<script src="{{url_for('static', filename='js/jquery.min.js')}}" ></script>
+<script src="{{url_for('static', filename='js/foundation.min.js')}}" ></script>
+{% block js %}{% endblock %}
+<script type="application/javascript">
+(function($) {
+    $(function () {
+        var csrf_token = "{{ csrf_token() }}";
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type)) {
+                    xhr.setRequestHeader("X-CSRFToken",csrf_token);
+                    xhr.withCredentials= true;
+                }
+            }
+        });
+        $(document).foundation();
+        {% block jquery %}{% endblock %}
+        $('input[type="date"][value=""][required]').val("{{today()}}");
+
+        setTimeout(function() {
+            $('#flash_message').fadeOut('fast');
+        }, 5500);
+    });
+})(jQuery);
+</script>
+</body>
+
+</html>

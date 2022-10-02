@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/radiobutton.min.css')}}" />
+{% endblock %}
+
+{% block js %}
+<script src="{{url_for('static', filename='js/radiobutton.js')}}" ></script>
+
+{% endblock %}
+
+
+
+{% block maincontent %}
+<form method="post">
+    <fieldset class="callout bg-glass-info text-center">
+        <legend>{{dc.title | upper}}</legend>
+        <h5>{{dc.question | upper}}</h5>
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <input type="hidden" name="typeq" value="{{dc.typeq}}">
+            <input type="hidden" name="uuid" value="{{dc.id}}">
+        {% if dc.typeq in ['qcu'] %}
+        {% set nbcolumn = dc.proposition | count %}
+        {% elif dc.typeq in ['words'] %}
+        {% set nbcolumn = 3 %}
+        {% else %}
+        {% set nbcolumn = 1 %}
+        {% endif %}
+
+
+        <div class="margin-vertical-1 grid-x grid-padding-x small-up-{{nbcolumn}} text-center"  data-equalizer="" data-equalizer-by-rows>
+            {% if dc.typeq in ['eval'] %}
+              <div id="reponse" class="cell rb align-center-middle">
+                  <input type="hidden" name="reponse"/>
+                {% for r in dc.proposition %}
+                <div class="rb-tab" data-value="{{r[0]}}" >
+                        <div class="color{{r[0]}} rb-spot padding-1">
+                            <span class="rb-txt">{{r[1]}}</span>
+                        </div>
+                </div>
+                {% endfor %}
+              </div>
+            {% elif dc.typeq == 'qcu' %}
+                {% for r in dc.proposition %}
+                 <div class="cell radiobutton" data-equalizer-watch>
+                     <input id="reponse-{{r[0]}}" type="radio" value="{{r[0]}}" name="reponse"/>
+                     <label class=" color{{r[0]}}" for="reponse-{{r[0]}}">{{r[1]}}</label>
+                 </div>
+                {% endfor %}
+            {% elif dc.typeq == 'words' %}
+                <div class="cell" data-equalizer-watch>
+                    <input  type="text" name="reponse-1"/>
+                </div>
+                <div class="cell" data-equalizer-watch>
+                    <input  type="text" name="reponse-2"/>
+                </div>
+                <div class="cell" data-equalizer-watch>
+                    <input  type="text" name="reponse-3"/>
+                </div>
+            {% elif dc.typeq in ['txt'] %}
+                <div class="cell">
+                    <textarea rows="3" name="reponse"></textarea>
+                </div>
+            {% endif %}
+        </div>
+        <button type="submit" class="button">Continuer ></button>
+    </fieldset>
+</form>
+
+{% endblock %}

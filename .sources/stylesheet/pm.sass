@@ -1,0 +1,140 @@
+@import  'pm_colors'
+@import  'pm_font'
+
+html, body
+    width: 100vw
+    height: 100vh
+    font-family: primary, Helvetica
+    font-size: 14px
+    line-height: 1.1
+    overflow: hidden
+
+body
+    background-color: $color_base_lite
+    border: none
+
+    &.login
+        background-image: url(../images/pics/bg.jpg)
+        background-attachment: fixed
+        background-repeat: no-repeat
+
+legend
+    text-align: center
+    width: 100%
+
+    &.badge
+        background-color: $color_base_dark!important
+        border-radius: 32px!important
+        width: 64px!important
+        height: 64px!important
+        padding: 10px!important
+
+input[type=text], [type=email], [type=month], [type=number], [type=password]
+    background: transparent
+    border: none
+    box-shadow: 0 1px 0 $color_base_lite
+
+    &:hover, &:focus
+
+
+#main_header
+    background-color: rgba(255,255,255,0.5)
+    z-index: 99
+    text-align: left
+    width: 100%
+    margin: 0
+
+    & > #info
+        padding: 15px 5px
+        text-align: center
+        background-image: url(../images/cw.png)
+        background-repeat: no-repeat
+        background-position: center left
+
+
+    & > .top-bar
+        margin: 0
+
+        & img.logo
+            height: 96px
+     
+
+#main_body 
+    overflow: auto
+    max-height: calc(100vh - 230px)
+
+
+
+$card_items: ("alert-critique": $color_alert_focus,"alert-hard": $color_warning_focus,"alert-warn": $color_success_focus,"alert-soft": $color_info_dark)
+$card_items_image: ("alert-critique": "alert-critical.png","alert-hard": "alert-hard.png","alert-warn": "alert-warn.png","alert-soft": "alert-soft.png")
+.card
+    border-width: 2px
+
+    & > header
+        border-bottom: inherit
+        border-width: thin
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        text-align: right;
+
+
+
+    @each $k, $v in $card_items
+        &.card-#{$k}
+            border-color: $v
+            & > header
+                @include background-pics(map-get($card_items_image, $k))
+                color: $v
+                font-size: 1.2rem
+                font-weight: bold
+
+.callout
+    @extend %glassestyle
+    background-color: $color_base
+    & > legend
+        background-color: $color_info
+        padding: 5px 10px
+        width: auto
+        font-size: 25px
+        font-weight: bold
+        margin: auto
+        display: block
+
+    & > .footer
+        bottom: 0
+        padding-bottom: 1rem
+        margin-top: 1rem
+
+.boxbump
+    @extend %glassestyle
+
+    background-color: rgba(0,0,0,0.05)!important
+    box-shadow: 1px 1px 1px $color_base_dark, -1px -1px 1px $color_base_lite
+
+    border-color: $color_base_dark
+
+    &:hover, &:focus
+        background-color: #fffe!important
+        box-shadow: inset 1px 1px 1px #aaa, -1px -1px 1px #ccc
+        cursor: pointer
+        border-radius: none
+
+
+.radiobutton
+
+    & label
+        width: 100%
+        padding: 10px 5px
+        border: solid thin white
+        font-size: 1rem
+        line-height: 2
+        border-radius: 50px
+        @extend %border-quizz
+
+    & input
+        display: none
+
+        &:checked + label,
+        &:checked + label:active
+            @extend %bg-quizz
