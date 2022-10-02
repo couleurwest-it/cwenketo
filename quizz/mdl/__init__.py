@@ -34,7 +34,7 @@ class DBRouter(Document):
             dbname = cls.dbname()
             if dbname not in client:
                 client.create(dbname)
-            cls.prepare(client)
+                cls.prepare(client)
         return super(DBRouter, cls).__new__(cls, *args, **kwargs)
 
     @property
@@ -156,7 +156,7 @@ class DBRouter(Document):
     @classmethod
     def execute_view(cls, ddoc, views, **kwargs):
         """Save and return document"""
-        with cls as db:
+        with cls() as db:
             return db.view(ddoc, views, **kwargs)
 
     def __enter__(self):

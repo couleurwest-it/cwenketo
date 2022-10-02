@@ -21,7 +21,7 @@ from flask import request, redirect, Flask
 from flask_login import login_user, LoginManager, login_required, logout_user
 from flask_wtf import CSRFProtect
 
-from quizz.ctrl.constantes import Directories, CONSTANTES, CQuizz
+from quizz.ctrl.constantes import CDirectories, CONSTANTES, CQuizz
 from quizz.ctrl.jarvis import CJarvis
 
 os.environ['TZ'] = 'America/Cayenne'  # set new timezone
@@ -69,7 +69,7 @@ def create_app():
     login_manager.login_view = "login"
 
     cfg.CConfig("quizz", "development")
-    CONSTANTES.DIRECTORIES = Directories(tools.PROJECT_DIR)
+    CONSTANTES.DIRECTORIES = CDirectories(tools.PROJECT_DIR)
     CONSTANTES.MASTER_PWD = os.getenv("SUPERPASS")
     app.static_folder = profiler.path_build(tools.PROJECT_DIR, 'static')
 
@@ -140,8 +140,8 @@ def create_app():
     @app.route('/', methods=['GET', 'POST'])
     @login_required
     def index():
-        start = request.args.get('start')
-        end = request.args.get('end')
+        start = request.args.get('start', '1')
+        end = request.args.get('end', '0')
 
         return flask.render_template('index.html', start=start, end=end, page="index")
 

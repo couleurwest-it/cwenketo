@@ -1,11 +1,14 @@
 @use "pm_colors"
 $font_primary_path:      "../fonts/primary"
 $font-secondary_path:    "../fonts/secondary"
+//********** WINDOWS
+//$font_format_items: ("eot": "embedded-opentype", "svg":"svg","ttf":"truetype", "woff":"woff","woff2":"woff2")
+//$font_secondary_items: ("eot": "embedded-opentype", "svg":"svg","ttf":"truetype", "woff":"woff","woff2":"woff2")
 
-$font_format_items: ("eot": "embedded-opentype", "svg":"svg","ttf":"truetype", "woff":"woff","woff2":"woff2")
+//********** LINUX
+$font_format_items: ("eot": "embedded-opentype", "svg":"svg")
+$font_secondary_items: ("eot": "embedded-opentype", "svg":"svg")
 
-
-$font_secondary_items: ("eot": "embedded-opentype", "svg":"svg","ttf":"truetype", "woff":"woff","woff2":"woff2")
 @each $ext, $format in $font_secondary_items
   @font-face
     src: url("#{$font_primary_path}/inter-BoldItalic.#{$ext}") format($format)

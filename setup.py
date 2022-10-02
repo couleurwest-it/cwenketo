@@ -1,9 +1,13 @@
 from setuptools import setup
 
 setup(
-    # ...,
-    setup_requires=['libsass >= 0.6.0'],
+    name= "CWEnketo",
+    version='1.0.0',
+    packages=['quizz'],
+
+    setup_requires=['libsass >= 0.21.0'],
     sass_manifests={'.': ('.sources/stylesheet', 'static/xcss', 'static/css')}
+
 )
 
 

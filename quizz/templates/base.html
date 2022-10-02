@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="{{url_for('static', filename='css/pm.min.css')}}" />
 </head>
-<body  class="grid-container height-100">
+<body  class="grid-container height-100 {{ page }}">
     <div class="grid-x align-center-middle height-100">
         <div class="grid-y">
             <div class="cell">
@@ -45,7 +45,6 @@
         });
         $(document).foundation();
         {% block jquery %}{% endblock %}
-        $('input[type="date"][value=""][required]').val("{{today()}}");
 
         setTimeout(function() {
             $('#flash_message').fadeOut('fast');

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import json
 import math
 from copy import copy
@@ -7,14 +6,14 @@ from copy import copy
 import dreamtools.tools
 import flask
 from flask import Blueprint
+from flask_login import current_user, login_required
 
 __all__ = ['question']
 
-from flask_login import current_user, login_required
 
 from quizz import CONSTANTES
 
-bp = Blueprint('quizzz', __name__, url_prefix="/quizz")
+bp = Blueprint('quizzy', __name__, url_prefix="/quizz")
 
 
 @bp.route('/question', methods=['POST', 'GET'])
@@ -92,6 +91,8 @@ def synthese():
         results[cat] = {'eval': math.ceil(note), 'note': round(note, 1)}
 
     content = json.dumps({"resultats": results, "commentaires": comms})
-    return flask.Response(content,
-                          mimetype='application/json',
-                          headers={'Content-Disposition': 'attachment;filename=resultat.json'})
+
+    from quizz.ctrl.synthese import ExtractSynthese
+    synthese = ExtractSynthese.synthetize({"resultats": results, "commentaires": comms})
+
+    return flask.send_file(synthese, as_attachment=True)

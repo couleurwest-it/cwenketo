@@ -4,7 +4,21 @@ from dreamtools import cfgmng, profiler
 
 from quizz.mdl.questions import DBQuestion
 
+@dataclasses.dataclass
+class CDirectories:
+    projet: str
+    app: str  = dataclasses.field(init=False)
+    pics: str  = dataclasses.field(init=False)
+    registar: str  = dataclasses.field(init=False)
+    calendar:  str  = dataclasses.field(init=False)
 
+    def __post_init__(self):
+        self.app = profiler.path_build(self.projet, "pm")
+        self.pics = profiler.path_build(self.projet, 'static/pics')
+        self.registar = profiler.path_build(self.projet, 'static/registar')
+        self.calendar = profiler.path_build(self.registar, 'calendar.yml')
+
+        profiler.makedirs(self.registar)
 class CQuizz:
     PRESENTATION = """Ce questionnaire de satisfaction nous permet de nous améliorer.<br/> Merci pour votre contribution."""
     CATEGORIES = {
@@ -51,22 +65,45 @@ class CQuizz:
             cfgmng.CFGEngine.save_cfg(dc, cls.FILENAME +"_done" )
             profiler.remove_file(cls.FILENAME)
 class CONSTANTES:
-    DIRECTORIES: str
+    DIRECTORIES: CDirectories
     MASTER_PWD: str
 
+class CSynthez:
+    LATEX = r"""\documentclass{{article}}
+\usepackage[legalpaper, portrait, margin=0.3in]{{geometry}}
+\usepackage{{graphicx}}  
 
-@dataclasses.dataclass
-class Directories:
-    projet: str
-    app: str  = dataclasses.field(init=False)
-    pics: str  = dataclasses.field(init=False)
-    registar: str  = dataclasses.field(init=False)
-    calendar:  str  = dataclasses.field(init=False)
+\title{{Synthèse enquête de satisfaction}}
+\author{{Formation HM - Eté 2022}}
+\date{{\today}}
 
-    def __post_init__(self):
-        self.app = profiler.path_build(self.projet, "pm")
-        self.pics = profiler.path_build(self.projet, 'static/pics')
-        self.registar = profiler.path_build(self.projet, 'static/registar')
-        self.calendar = profiler.path_build(self.registar, 'calendar.yml')
+\graphicspath{{{pathpics}}}
+\begin{{document}}
+\sffamily  
+\maketitle
+{row} 
+\end{{document}}"""
+    LATEX_ROW = r"""\section*{{\large{{{categorie} : Note {note}/10}}}}
+\begin{{minipage}}{{0.3\linewidth}}
+    \centering
+    \includegraphics[width=\linewidth]{{{pic_note}}}
+\end{{minipage}}
+\begin{{minipage}}{{0.60\linewidth}}
+    \centering
+    \includegraphics[width=\linewidth]{{{pic_cloud}}}
+\end{{minipage}}
+\vspace{{10pt}}
+\subsection*{{Commentaires}}
+{commentaires}"""
+    LATEX_COM = r""" \begin{{itemize}}
+{item}
+\end{{itemize}}"""
+    COLORS = ["#a50000", "#a50000", "#f93e9b", "#bb00bb", "#63287a", "#37029a", "#047295", "#01cbd1", "#24b881",
+              "#6bf904", "#f5ff00"]
+    WEXCLUDED = {
+        'd', 'du', 'de', 'la', 'des', 'le', 'et', 'est', 'elle', 'une', 'en', 'que', 'aux', 'qui', 'ces',
+        'les', 'dans', 'sur', 'l', 'un', 'pour', 'par', 'il', 'ou', 'à', 'ce', 'a', 'sont', 'cas', 'plus',
+        'leur', 'se', 's', 'vous', 'au', 'c', 'aussi', 'toutes', 'autre', 'comme', "c'est", 'je', 'tu', 'il', 'nous',
+        'vous',
+        'ils', 'on', 'est'}
 
-        profiler.makedirs(self.registar)

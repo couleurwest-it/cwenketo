@@ -14,16 +14,17 @@ body
     border: none
 
     &.login
-        background-image: url(../images/pics/bg.jpg)
+        background-image: url(../pics/bg/bg.png)
         background-attachment: fixed
         background-repeat: no-repeat
+        background-position: center
 
 legend
     text-align: center
     width: 100%
 
     &.badge
-        background-color: $color_base_dark!important
+        background-color: rgba($color_base_dark, 0.95)!important
         border-radius: 32px!important
         width: 64px!important
         height: 64px!important
@@ -91,7 +92,8 @@ $card_items_image: ("alert-critique": "alert-critical.png","alert-hard": "alert-
 
 .callout
     @extend %glassestyle
-    background-color: $color_base
+    @include glassbase($color_base)
+
     & > legend
         background-color: $color_info
         padding: 5px 10px
@@ -138,3 +140,32 @@ $card_items_image: ("alert-critique": "alert-critical.png","alert-hard": "alert-
         &:checked + label,
         &:checked + label:active
             @extend %bg-quizz
+
+
+::placeholder
+    color: $color_warning_dark
+    opacity: 0.8
+    font-style: italic
+
+
+::-ms-input-placeholder
+    color: $color_warning_dark
+    opacity: 0.8
+    font-style: italic
+
+::-ms-input-placeholder
+    color: $color_warning_dark
+    opacity: 0.8
+    font-style: italic
+
+.simple-captcha-text
+    text-align: center
+    margin-top: 0.5rem
+    margin-bottom: 0.2rem
+
+
+.button
+    @include glassbase($color_success_dark )
+
+    &:hover
+        @include glassbase($color_success_focus)

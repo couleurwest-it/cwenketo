@@ -7,7 +7,8 @@
         <div class="margin-vertical-1 grid-y grid-margin-y">
             <div class="cell margin-bottom-2 small-12"><input type="email" name="email" placeholder="your email" class="text-center"/></div>
 
-            <div class="cell">{{ captcha_html(captcha) | safe }}<br/>
+
+            <div class="cell">{{ captcha_html(captcha) | safe }}
             <small><em>[F5] por rafraichir le captcha</em></small></div>
         </div>
 
@@ -15,3 +16,8 @@
     </fieldset>
 </form>
 {% endblock %}
+
+{% block jquery %}
+    $('.simple-captcha-text').attr('placeholder', 'captcha');
+{% endblock %}
+

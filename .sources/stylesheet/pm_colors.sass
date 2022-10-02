@@ -22,24 +22,27 @@ $color_alert_focus:      #bf2852
 $color_base_focus:       #6ebf30
 
 %glassestyle
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05)
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)
+    backdrop-filter: blur(5px)
+    -webkit-backdrop-filter: blur(5px)
+    border: 1px solid rgba(255, 255, 255, 0.3)
 
-
+%placeholder
+    color: $color_warning_dark
+    opacity: 0.8
+    font-style: italic
 
 @mixin background-opacity($color, $opacity: 0.4)
-    background: $color; /* The Fallback */
-    background: rgba($color, $opacity);
+    background: $color /* The Fallback */
+    background: rgba($color, $opacity)
 
 
 @mixin border-opacity($color, $opacity: 0.6)
-    border-color: rgba($color, $opacity);
+    border-color: rgba($color, $opacity)
 
 @mixin background-pics($img)
-    background-image: url(../images/pics/#{$img})
+    background-image: url(../pics/#{$img})
 
 @mixin glassbase ($color)
     @extend %glassestyle
