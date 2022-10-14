@@ -30,11 +30,11 @@
         <div class="margin-vertical-1 grid-x grid-padding-x small-up-{{nbcolumn}} text-center"  data-equalizer="" data-equalizer-by-rows>
             {% if dc.typeq in ['eval'] %}
               <div id="reponse" class="cell rb align-center-middle">
-                  <input type="hidden" name="reponse"/>
+                  <input type="hidden" name="reponse" required="required"/>
                 {% for r in dc.proposition %}
                 <div class="rb-tab" data-value="{{r[0]}}" >
                         <div class="color{{r[0]}} rb-spot padding-1">
-                            <span class="rb-txt">{{r[1]}}</span>
+                            <span class="rb-txt">{{r[1]| safe}}</span>
                         </div>
                 </div>
                 {% endfor %}
@@ -42,8 +42,8 @@
             {% elif dc.typeq == 'qcu' %}
                 {% for r in dc.proposition %}
                  <div class="cell radiobutton" data-equalizer-watch>
-                     <input id="reponse-{{r[0]}}" type="radio" value="{{r[0]}}" name="reponse"/>
-                     <label class=" color{{r[0]}}" for="reponse-{{r[0]}}">{{r[1]}}</label>
+                     <input id="reponse-{{r[0]}}" type="radio" value="{{r[0]}}" name="reponse" required="required"/>
+                     <label class=" color{{r[0]}}" for="reponse-{{r[0]}}">{{r[1] | safe}}</label>
                  </div>
                 {% endfor %}
             {% elif dc.typeq == 'words' %}
@@ -58,7 +58,7 @@
                 </div>
             {% elif dc.typeq in ['txt'] %}
                 <div class="cell">
-                    <textarea rows="3" name="reponse"></textarea>
+                    <textarea rows="3" name="reponse" required="required"></textarea>
                 </div>
             {% endif %}
         </div>

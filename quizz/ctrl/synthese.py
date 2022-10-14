@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-import os
 import subprocess
 
-import matplotlib
+
 import numpy as np
 from PIL import Image
 from dreamtools import profiler
 from wordcloud import WordCloud
-
-matplotlib.use('TkAgg')
+#import matplotlib
+# #matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 from quizz import CONSTANTES
@@ -31,8 +30,7 @@ class ExtractSynthese:
         image = cloud.to_image()
         image.save(img_dst)
 
-        return fn
-
+        return img_dst
     @classmethod
     def do_plot(cls, cat, note, evl):
         fn = f'{cat}_note.png'
@@ -48,7 +46,7 @@ class ExtractSynthese:
         plt.title(cat, fontsize=24, loc='left')
         plt.text(0, 0, f"{note}/10", ha='center', va='center', fontsize=42)
         plt.savefig(img_dst)
-        return fn
+        return img_dst
 
     @classmethod
     def synthetize(cls, resultats):
@@ -61,25 +59,30 @@ class ExtractSynthese:
         rows = []
 
         for cat, dataset in cloudword.items():
+            dataset = list(filter (lambda s: (s), dataset))
             text = ' '.join(dataset)
             note = resultats['resultats'][cat]["note"]
 
             if not dataset:
-                text = "Personne ne s'est exprimé"
+                text = "Personne ne s'est exprime"
 
             pic_cloud = cls.do_clouds(cat, text)
             pic_note = cls.do_plot(cat, note, resultats['resultats'][cat]["eval"])
 
-            com = resultats['commentaires'][cat] or 'Aucun commentaires'
-            com = list(map(lambda s: rf"\item {s}", com))
+            com = resultats['commentaires'][cat]
 
-            commentaire = CSynthez.LATEX_COM.format(item='\n'.join(com))
+            if com :
+                com = list(filter(lambda s: (s), com))
+                com = list(map(lambda s: rf"\item {s}", com))
+                commentaire = CSynthez.LATEX_COM.format(item='\n'.join(com))
+            else :
+                commentaire = CSynthez.LATEX_COM.format(item='no comments')
             rows.append(CSynthez.LATEX_ROW.format(note=note, pic_note=pic_note, pic_cloud=pic_cloud,
                                                   commentaires=commentaire, categorie=cat))
 
         row = '\n\\vspace{1cm}\n'.join(rows)
 
-        document = CSynthez.LATEX.format(row=row, pathpics=cls.tempath)
+        document = CSynthez.LATEX.format(row=row, pathpics='')
 
         fname = "resultats"
         tex = profiler.path_build(cls.tempath, f"{fname}.tex")
@@ -91,11 +94,6 @@ class ExtractSynthese:
         proc.communicate()
 
 
-        for root, dirs, files in os.walk(cls.tempath):
-            for filename in files:
-
-                if filename != f"{fname}.pdf":
-                    os.unlink( profiler.path_build(cls.tempath, filename))
 
         fname = profiler.path_build(cls.tempath, f"{fname}.pdf")
         return fname

@@ -2,18 +2,20 @@
 {% block maincontent %}
 <form method="post">
     <fieldset class="callout text-center" style="width:400px">
-        <legend class="badge"><img src="{{url_for('static', filename='pics/logo/logo_64.png')}}" alt="logo"></legend>
-
-        <div class="margin-vertical-1 grid-y grid-margin-y">
-            <div class="cell margin-bottom-2 small-12">
-                <input type="password" name="superpass" placeholder="mot de passe" class="text-center"/></div>
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-
-            <!--div class="cell">{ { captcha_html(captcha) | safe } }<br/>
-            <small><em>[F5] por rafraichir le captcha</em></small></div-->
+        <legend class="">
+            <img src="{{url_for('static', filename='pics/certif.png')}}" alt="certif">
+        </legend>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="margin-vertical-1 grid-y grid-padding-y">
+            <div class="cell">
+                <input type="password" name="superpass" placeholder="mot de passe" class="text-center"/>
+            </div>
+            <div class="cell ">
+                <button type="submit" class="button">Télécharger la synthèse</button>
+            </div>
         </div>
-
-        <button type="submit" class="button">Synthese</button>
+        <hr/>
+        <footer class="row margin-top-2"><small>Ce service a été conçu et réalisé par <a href="https://couleurwest-it.com">Couleur West IT</a></small></footer>
     </fieldset>
 </form>
 {% endblock %}

@@ -22,7 +22,7 @@ class CDirectories:
 class CQuizz:
     PRESENTATION = """Ce questionnaire de satisfaction nous permet de nous améliorer.<br/> Merci pour votre contribution."""
     CATEGORIES = {
-        "avis": [(0, "tres insatisfait"), (3, "plutot insatisfait"), (7, "plutot satisfait"), (8, "Très satisfait")],
+        "avis": [(0, "tres insatisfait"), (3, "plutot insatisfait"), (7, "plutot satisfait"), (10, "Très satisfait")],
         "eval": (1, 11)
     }
     FILENAME = "question.yml"
@@ -77,7 +77,7 @@ class CSynthez:
 \author{{Formation HM - Eté 2022}}
 \date{{\today}}
 
-\graphicspath{{{pathpics}}}
+\graphicspath{{{{{pathpics}}}}}
 \begin{{document}}
 \sffamily  
 \maketitle

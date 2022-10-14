@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 {% block maincontent %}
 
-<fieldset class="callout text-center ">
+<fieldset class="callout text-center bg-glass-lite">
         <legend class="badge"><img src="{{url_for('static', filename='pics/logo/logo_64.png')}}" alt="logo"></legend>
     {% if start == '1' %}
         <article>
-            <p>Vous venez de terminer la formation HM assuré par Softway médical et organisé par le <a href="https://gcsguyasis.fr">GCS Guyasis</a>
-                Ce questionnaire de satisfaction nous permet de nous améliorer. Il est entièrement anonyme</p><p>
-        Nous ne recoltons votre adresse mail uniquement assuré l'intégrité du questionnaire et éventuellement vous faire parvenir le résultat de cette étude, si vous le désirez.
-            Une fois l'étude achevée, nous supprimerons votre adresse mail.</p>
-            </article>
-        <div class="cell margin-vertical-2"><a href="{{url_for('quizz.question')}}" class="button">Commencer</a></div>
+            <p>Vous venez de terminer la formation HM assuré par Softway médical et organisé par le <a href="https://gcsguyasis.fr">GCS Guyasis</a>.
+            <br/>Ce questionnaire de satisfaction, entièrement anonyme, nous permet de nous améliorer. </p>
+            <p>Nous ne recoltons votre adresse mail afin d'assurer l'intégrité du questionnaire.
+            <br/>Une fois l'étude achevée, nous supprimerons votre adresse mail.</p>
+        </article>
+        <div class="cell margin-top-2"><a href="{{url_for('quizz.question')}}" class="button">Commencer le quizz</a></div>
     {% elif end == '1' %}
-    <p><h3>Merci d'avoir participer à ce petit questionnaire</h3>
-        <p>Pour toutes question concernant le Dossier Usager/Patient Informatisé, vous pouvez nous contacter par mail à l'adresse suivante :<br/>
+    <p><h3>Merci d'avoir participé à ce petit questionnaire</h3>
+        <p>Pour toute question concernant le Dossier Usager/Patient Informatisé, vous pouvez nous contacter par mail à l'adresse suivante :<br/>
             <a href="mailto:pepitesdossier@gcsguyasis.fr">pepitesdossier@gcsguyasis.fr</a></p>
     {% else %}
         <span style="font-size: 2rem; font-weight: bolder; color:#bf2852" >404</span>
     {% endif %}
         <hr/>
 
-    <footer class="row margin-top-2"><small>Ce service a été conçu et réaliser par <a href="https://couleurwest-it.com">Couleur West IT</a></small></footer>
+    <footer class="row margin-top-2"><small>Ce service a été conçu et réalisé par <a href="https://couleurwest-it.com">Couleur West IT</a></small></footer>
 </fieldset>
     {% endblock %}

@@ -90,8 +90,6 @@ def synthese():
         note = (results[cat] * 10) / (nb_participant * vl)
         results[cat] = {'eval': math.ceil(note), 'note': round(note, 1)}
 
-    content = json.dumps({"resultats": results, "commentaires": comms})
-
     from quizz.ctrl.synthese import ExtractSynthese
     synthese = ExtractSynthese.synthetize({"resultats": results, "commentaires": comms})
 

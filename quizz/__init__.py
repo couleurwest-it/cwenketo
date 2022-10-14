@@ -93,40 +93,6 @@ def create_app():
     def today():
         return dtemng.today('%Y-%m-%d')
 
-    @app.template_global('citation')
-    def citation():
-        textes = ["""Je n'ai fait que te rappeler ce que tu savais déjà.""",
-                  """Il faut laisser le passé derrière soi si on veut avancer""",
-                  """Parfois, les choses simples sont les plus difficiles à réaliser""",
-                  """ Il n’y a pas de vent favorable pour celui qui ne sait pas où il va""",
-                  """Le futur a été créé pour être changé""",
-                  """Prévoir consiste à projeter dans l’avenir ce qu’on a perçu dans le passé""",
-                  """Pour réussir il ne suffit pas de prévoir, il faut aussi savoir improviser""",
-                  """Mieux vaut penser le changement que changer le pansement.""",
-                  """C'est le désir qui crée le désirable, et le projet qui pose la fin""",
-                  """Le numérique est inéluctable, le nier est faire preuve de mauvaise foi""",
-                  """Les problème résident dans l'inaction""",
-                  """S C'est le désir qui crée le désirable, et le projet qui pose la fin""",
-                  """Cherche un arbre et laisse lui t'apprendre le calme.""",
-                  """S' il y a problème, il y a solution, s' il y a pas solution, il y a pas problème.""",
-                  """Les faibles ont de problèmes. Les forts ont des solutions.""",
-                  """Il n'y aurait rien de pire à mes yeux que de participer à un projet préconçu, prémâché, formaté.""",
-                  """Se réunir est un début, rester ensemble est un progrès, travailler ensemble est la réussite.""",
-                  """Il y a plus d'idées dans deux têtes que dans une.""",
-                  """La logique vous conduira d’un point A à un point B. L'imagination et l'audace vous conduiront où vous le désirez. """,
-                  """Seuls ceux qui prennent le risque d'échouer spectaculairement réussiront brillamment.""",
-                  """ Certains veulent que ça arrive, d'autres aimeraient que ça arrive et quelques-uns fonts que ça arrive. """,
-                  """ Le succès est la capacité d'aller d'échec en échec sans perdre son enthousiasme. """,
-                  """Aucun de nous n'est autant intelligent que nous tous.""",
-                  """Si vous voulez vous élever, soulèvez quelqu'un d'autre.""",
-                  """Cela prend deux silex pour faire un feu.""",
-                  """Dans le travail d'équipe, le silence n'est pas d'or, c’est mortel.""",
-                  """Le seul endroit où le succès vient avant le travail est dans le dictionnaire.""",
-                  """La façon de commencer est d'arrêter de parler et de commencer à faire.""",
-                  """Même si vous êtes sur la bonne voie, vous vous ferez écraser si vous restez assis là."""]
-
-        return random.choice(textes)
-
     @app.route("/logout")
     @login_required
     def logout():

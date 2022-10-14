@@ -2,17 +2,21 @@
 {% block maincontent %}
 <form>
     <fieldset class="callout text-center bg-glass-lite" style="width:400px">
-        <legend class="badge"><img src="{{url_for('static', filename='pics/logo/logo_64.png')}}" alt="logo"></legend>
-
-        <div class="margin-vertical-1 grid-y grid-margin-y">
-            <div class="cell margin-bottom-2 small-12"><input type="email" name="email" placeholder="your email" class="text-center"/></div>
-
-
+        <legend class="badge">
+            <img src="{{url_for('static', filename='pics/logo/logo_64.png')}}" alt="logo">
+        </legend>
+        <div class="margin-vertical-1 grid-y grid-padding-y">
+            <div class="cell">
+                <input type="email" name="email" placeholder="Indiquez votre e-mail" class="text-center"/>
+            </div>
             <div class="cell">{{ captcha_html(captcha) | safe }}
-            <small><em>[F5] por rafraichir le captcha</em></small></div>
+            <small><em>Touche [F5] pour rafraichir le captcha</em></small></div>
         </div>
+        <div class="cell margin-top-2">
+            <button type="submit" class="button">Accéder au quizz</button>
+        </div>
+            <footer class="row margin-top-2"><small>Ce service a été conçu et réalisé par <a href="https://couleurwest-it.com">Couleur West IT</a></small></footer>
 
-        <button type="submit" class="button">Commencer quizz</button>
     </fieldset>
 </form>
 {% endblock %}
